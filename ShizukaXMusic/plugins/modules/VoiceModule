@@ -1,0 +1,28 @@
+from pyrogram import Client
+from google.cloud import speech
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
+from voice_module import create_voice_module
+
+API_ID = 'YOUR_API_ID'
+API_HASH = 'YOUR_API_HASH'
+bot = Client("music_bot", api_id=API_ID, api_hash=API_HASH)
+
+# Initialize Google Cloud Speech-to-Text client
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "path/to/your/credentials.json"
+speech_client = speech.SpeechClient()
+
+# Initialize Spotify client
+SPOTIPY_CLIENT_ID = 'YOUR_SPOTIFY_CLIENT_ID'
+SPOTIPY_CLIENT_SECRET = 'YOUR_SPOTIFY_CLIENT_SECRET'
+SPOTIPY_REDIRECT_URI = 'YOUR_SPOTIFY_REDIRECT_URI'
+spotify_client = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
+                                                          client_secret=SPOTIPY_CLIENT_SECRET,
+                                                          redirect_uri=SPOTIPY_REDIRECT_URI,
+                                                          scope='user-read-playback-state,user-modify-playback-state'))
+
+# Create the voice module
+voice_module = create_voice_module(bot, speech_client, spotify_client)
+
+# Start the bot
+bot.run()
