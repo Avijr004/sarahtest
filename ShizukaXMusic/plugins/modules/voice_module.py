@@ -27,5 +27,6 @@ class VoiceModule:
     def process_voice_command(self, text):
         # ... Command processing code ...
 
-def create_voice_module(bot, speech_client, spotify_client):
-    return VoiceModule(bot, speech_client, spotify_client)
+    def create_voice_module(bot, speech_client, spotify_client):
+        return VoiceModule(bot, speech_client, spotify_client)
+     
