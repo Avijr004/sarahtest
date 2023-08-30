@@ -1,4 +1,32 @@
 import os
+import random
+import string
+from ast import ExceptHandler
+
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
+from pytgcalls.exceptions import NoActiveGroupCall
+
+import config
+from config import BANNED_USERS, lyrical
+from strings import get_command
+from ShizukaXMusic import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
+from ShizukaXMusic.core.call import Shizuka
+from ShizukaXMusic.utils import seconds_to_min, time_to_seconds
+from ShizukaXMusic.utils.channelplay import get_channeplayCB
+from ShizukaXMusic.utils.database import is_video_allowed
+from ShizukaXMusic.utils.decorators.language import languageCB
+from ShizukaXMusic.utils.decorators.play import PlayWrapper
+from ShizukaXMusic.utils.formatters import formats
+from ShizukaXMusic.utils.inline.play import (
+    livestream_markup,
+    playlist_markup,
+    slider_markup,
+    track_markup,
+)
+from ShizukaXMusic.utils.inline.playlist import botplaylist_markup
+from ShizukaXMusic.utils.logger import play_logs
+from ShizukaXMusic.utils.stream.stream import stream
 from pyrogram import Client, filters
 from pyrogram.types import InputFile
 from google.cloud import speech
