@@ -34,7 +34,7 @@ def recognize_speech(self, file_path):
        
 
 def process_voice_command(self, text):
-    # ... Command processing code ...
+     # ... Command processing code ...
         
 
 def create_voice_module(bot, speech_client, spotify_client):
